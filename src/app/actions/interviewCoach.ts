@@ -28,7 +28,8 @@ export async function generateQuestions(
   jobDescription: string,
   cv: string,
   roleTitle: string,
-  companyName: string
+  companyName: string,
+  masterProfile: string
 ) {
   if (!apiKey) throw new Error("API Key is required.");
   
@@ -60,11 +61,16 @@ Analyze the alignment between the candidate's CV and the Job Description. Provid
 
 ---
 
-CANDIDATE'S CV:
-${cv || "None provided."}
+---
+
+CANDIDATE'S MASTER PROFILE:
+${masterProfile || "Not provided."}
+
+CANDIDATE'S TAILORED CV:
+${cv || "None provided for this specific application. Rely strictly on the Master Profile above to understand the candidate's background."}
 
 JOB DESCRIPTION / CONTEXT:
-${jobDescription || "Not provided. Base questions on standard expectations for a " + roleTitle + " and the candidate's CV."}`
+${jobDescription || "Not provided. Base questions on standard expectations for a " + roleTitle + " and the candidate's background."}`
     });
 
     return { success: true, data: object };

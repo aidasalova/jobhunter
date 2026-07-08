@@ -98,7 +98,8 @@ export default function ApplicationDetailClient({ id }: { id: string }) {
       application.jobDescription,
       cvText,
       application.roleTitle,
-      application.companyName
+      application.companyName,
+      JSON.stringify(masterProfile)
     );
     setIsGeneratingQuestions(false);
 
