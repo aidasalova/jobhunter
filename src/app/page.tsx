@@ -1,65 +1,131 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { getApplications, JobApplication } from "@/lib/storage";
+import { Briefcase, Send, Users, Trophy, CheckCircle2, Circle, ArrowRight, Loader2, XCircle } from "lucide-react";
+
+export default function Dashboard() {
+  const [isMounted, setIsMounted] = useState(false);
+  const [jobs, setJobs] = useState<JobApplication[]>([]);
+  const [hasApiKey, setHasApiKey] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    setJobs(getApplications());
+    
+    const savedProfile = localStorage.getItem("jobhunter_master_profile");
+    if (savedProfile) {
+      try {
+        const parsed = JSON.parse(savedProfile);
+        if (parsed.apiKey) {
+          setHasApiKey(true);
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+      </div>
+    );
+  }
+
+  const totalCount = jobs.length;
+  const appliedCount = jobs.filter(j => j.status === "Applied").length;
+  const interviewCount = jobs.filter(j => j.status === "Interviewing").length;
+  const offerCount = jobs.filter(j => j.status === "Offer").length;
+  const rejectedCount = jobs.filter(j => j.status.startsWith("Rejected")).length;
+
+  const hasFirstApp = jobs.length > 0;
+  const hasTrackedProgress = jobs.some(j => j.status !== "Draft");
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="mx-auto max-w-7xl p-6 lg:p-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Dashboard</h1>
+        <p className="mt-2 text-lg text-slate-600">Welcome to JobHunter. Track your progress and manage your applications.</p>
+      </div>
+
+      {/* Funnel Stats */}
+      <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <StatCard title="Total Applications" value={totalCount} icon={Briefcase} color="blue" />
+        <StatCard title="Applied" value={appliedCount} icon={Send} color="indigo" />
+        <StatCard title="Interviewing" value={interviewCount} icon={Users} color="purple" />
+        <StatCard title="Offers" value={offerCount} icon={Trophy} color="green" />
+        <StatCard title="Rejected" value={rejectedCount} icon={XCircle} color="red" />
+      </div>
+
+      {/* Onboarding Checklist */}
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div className="border-b border-slate-100 bg-slate-50/50 px-6 py-5">
+          <h2 className="text-lg font-semibold text-slate-900">Onboarding Checklist</h2>
+          <p className="mt-1 text-sm text-slate-500">Complete these steps to get the most out of JobHunter.</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="divide-y divide-slate-100 p-2">
+          <ChecklistItem 
+            title="Set up your Master Profile & AI Key" 
+            isComplete={hasApiKey} 
+            href="/profile"
+          />
+          <ChecklistItem 
+            title="Tailor your first application" 
+            isComplete={hasFirstApp} 
+            href="/tailor"
+          />
+          <ChecklistItem 
+            title="Track your progress" 
+            isComplete={hasTrackedProgress} 
+            href="/tracker"
+          />
         </div>
-      </main>
+      </div>
     </div>
+  );
+}
+
+function StatCard({ title, value, icon: Icon, color }: { title: string, value: number, icon: any, color: string }) {
+  const colorMap: Record<string, string> = {
+    blue: "bg-blue-50 text-blue-600",
+    indigo: "bg-indigo-50 text-indigo-600",
+    purple: "bg-purple-50 text-purple-600",
+    green: "bg-green-50 text-green-600",
+    red: "bg-red-50 text-red-600",
+  };
+
+  return (
+    <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${colorMap[color]}`}>
+        <Icon className="h-6 w-6" />
+      </div>
+      <div>
+        <p className="text-sm font-medium text-slate-500">{title}</p>
+        <p className="text-2xl font-bold text-slate-900">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+function ChecklistItem({ title, isComplete, href }: { title: string, isComplete: boolean, href: string }) {
+  return (
+    <Link href={href} className="flex items-center justify-between p-4 hover:bg-slate-50 transition-colors rounded-lg group">
+      <div className="flex items-center gap-3">
+        {isComplete ? (
+          <CheckCircle2 className="h-6 w-6 text-green-500" />
+        ) : (
+          <Circle className="h-6 w-6 text-slate-300" />
+        )}
+        <span className={`font-medium ${isComplete ? 'text-slate-500 line-through' : 'text-slate-900'}`}>
+          {title}
+        </span>
+      </div>
+      <div className="flex items-center gap-2 text-sm font-medium text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+        Go to step <ArrowRight className="h-4 w-4" />
+      </div>
+    </Link>
   );
 }

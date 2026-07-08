@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jobhunter OS
 
-## Getting Started
+A modern, local-first application designed to streamline and supercharge your job hunting process using AI.
 
-First, run the development server:
+## The Problem
+Applying for jobs is a time-sink. Tailoring your CV and Cover Letter for every single application is exhausting, and keeping track of where you applied (and with which version of your CV) quickly turns into a disorganized mess of folders and spreadsheets. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## The Solution
+**Jobhunter** is an all-in-one platform that acts as your personal career assistant:
+- **AI CV Tailoring:** Connect your Master Profile, paste a Job Description, and instantly generate a highly tailored CV and Cover Letter.
+- **Application Tracker:** A built-in List system to track your application statuses (Draft, Applied, Interview, Offer, Rejected) along with the exact CV and Cover Letter you used for each role.
+- **AI Interview Coach:** An AI agent that analyzes your CV against the Job Description to generate a custom Interview Strategy Brief and 10 highly probable, specific interview questions (with suggested STAR-method answers).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Architecture & Privacy (Zero-Liability)
+Privacy is a core feature of this application. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Jobhunter is built as a strictly **"Zero-Liability / Local-First"** application.
+- **No Databases:** There is no centralized backend database (no PostgreSQL, no MongoDB, no SQLite).
+- **100% Local Storage:** All of your data—your Master Profile, your job history, your tailored CVs, and your API keys—is stored entirely within your browser's native `localStorage`.
+- **Zero Server Leaks:** When utilizing AI features, your data is passed in memory directly to the LLM provider. Nothing is ever cached, logged, or saved on our servers. You have complete ownership of your data.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **AI Integration:** [Vercel AI SDK](https://sdk.vercel.ai/)
+- **Icons:** [Lucide React](https://lucide.dev/)
 
-## Learn More
+## How to Run Locally
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/jobhunter.git
+   cd jobhunter
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Configure Environment Variables:**
+   Create a `.env.local` file in the root directory and add your AI provider API key. (For example, using Google Gemini):
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+   *(Note: The application also supports passing the API key directly via the Master Profile UI, allowing users to "Bring Their Own Key" without editing `.env.local`).*
 
-## Deploy on Vercel
+4. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Open the app:**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
