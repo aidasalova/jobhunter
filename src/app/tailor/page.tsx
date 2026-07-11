@@ -317,7 +317,7 @@ export default function Tailor() {
             <button
               onClick={handleGenerateCV}
               disabled={isGeneratingCV || isGeneratingCoverLetter}
-              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-100 px-6 py-4 text-sm font-semibold text-blue-900 shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-blue-50 disabled:text-blue-400"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-blue-50 disabled:text-blue-400"
             >
               {isGeneratingCV ? (
                 <>
@@ -334,7 +334,7 @@ export default function Tailor() {
             <button
               onClick={handleGenerateCoverLetter}
               disabled={isGeneratingCV || isGeneratingCoverLetter}
-              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-100 px-6 py-4 text-sm font-semibold text-blue-900 shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-blue-50 disabled:text-blue-400"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-blue-50 disabled:text-blue-400"
             >
               {isGeneratingCoverLetter ? (
                 <>
