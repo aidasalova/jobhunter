@@ -158,7 +158,7 @@ export default function Tracker() {
                         {/* 1. The View & Prep Button */}
                         <Link 
                           href={`/tracker/${job.id}`}
-                          className="inline-flex items-center justify-center rounded-lg bg-blue-100 px-3 py-1.5 text-sm font-medium text-blue-900 shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95">
+                          className="inline-flex items-center justify-center rounded-lg bg-blue-500 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95">
                           View & Prep
                         </Link>
                         {/* 2. The Delete Button */}
