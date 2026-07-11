@@ -263,7 +263,7 @@ export default function Tailor() {
               <textarea
                 value={jobText}
                 onChange={(e) => setJobText(e.target.value)}
-                placeholder="Paste the full job description here..."
+                placeholder="Paste the full job description here. LinkedIn job posts should be copy-pasted here."
                 rows={8}
                 className="w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
