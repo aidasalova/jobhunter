@@ -243,6 +243,7 @@ export default function ApplicationDetailClient({ id }: { id: string }) {
               value={cvText}
               onChange={setCvText}
               placeholder="Your CV will appear here..."
+              exportFileName={`OneMoreCV_CV_${application.companyName.replace(/\s+/g, "_")}`}
             />
           </div>
           
@@ -252,6 +253,7 @@ export default function ApplicationDetailClient({ id }: { id: string }) {
               value={clText}
               onChange={setClText}
               placeholder="Your Cover Letter will appear here..."
+              exportFileName={`OneMoreCV_CoverLetter_${application.companyName.replace(/\s+/g, "_")}`}
             />
           </div>
         </div>

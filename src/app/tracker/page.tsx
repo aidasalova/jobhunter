@@ -11,6 +11,8 @@ export default function Tracker() {
   const [isMounted, setIsMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Statuses");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 50;
 
   const statuses = [
     "All Statuses",
@@ -52,6 +54,25 @@ export default function Tracker() {
     });
   }, [jobs, searchQuery, statusFilter]);
 
+  // Reset to page 1 if filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, statusFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredJobs.length / ITEMS_PER_PAGE));
+
+  // Edge case: if items are deleted and current page becomes empty
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const paginatedJobs = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredJobs.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredJobs, currentPage]);
+
   if (!isMounted) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
@@ -64,8 +85,8 @@ export default function Tracker() {
     <div className="mx-auto max-w-7xl p-6 lg:p-8">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Application Tracker</h1>
-          <p className="mt-2 text-lg text-slate-600">Track and manage your tailored job applications.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Tracker & Coach</h1>
+          <p className="mt-2 text-lg text-slate-600">Track your job applications. Prepare for the interview with AI Coach.</p>
         </div>
         <ManualAddModal onAdd={refreshJobs} />
       </div>
@@ -103,7 +124,7 @@ export default function Tracker() {
                 <th className="px-6 py-4 font-medium">Role Title</th>
                 <th className="px-6 py-4 font-medium">Date</th>
                 <th className="px-6 py-4 font-medium">Status</th>
-                <th className="px-6 py-4 font-medium text-right">Actions</th>
+                <th><span className="sr-only">Actions</span></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 bg-white">
@@ -114,7 +135,7 @@ export default function Tracker() {
                   </td>
                 </tr>
               ) : (
-                filteredJobs.map((job) => (
+                paginatedJobs.map((job) => (
                   <tr key={job.id} className="group transition-colors hover:bg-slate-50/50">
                     <td className="px-6 py-4 font-semibold text-slate-900">
                       <Link href={`/tracker/${job.id}`} className="hover:text-blue-600 hover:underline">
@@ -134,19 +155,17 @@ export default function Tracker() {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
+                        {/* 1. The View & Prep Button */}
                         <Link 
                           href={`/tracker/${job.id}`}
-                          className="inline-flex items-center gap-1.5 rounded-lg border border-purple-200 bg-purple-50 px-3 py-1.5 text-xs font-semibold text-purple-700 shadow-sm transition-colors hover:bg-purple-100"
-                        >
-                          <Sparkles className="h-3.5 w-3.5" />
+                          className="inline-flex items-center justify-center rounded-lg bg-blue-100 px-3 py-1.5 text-sm font-medium text-blue-900 shadow-sm transition-all hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95">
                           View & Prep
                         </Link>
-                        <ManualAddModal onAdd={refreshJobs} initialData={job} isEditMode={true} />
-                        <button 
-                          onClick={() => handleDelete(job.id)}
-                          className="inline-flex items-center justify-center rounded-lg p-2 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                        {/* 2. The Delete Button */}
+                        <button
+                          onClick={() => handleDelete(job.id)} 
                           title="Delete Application"
-                        >
+                          className="inline-flex items-center justify-center rounded-lg p-2 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600">
                           <Trash2 className="h-4 w-4" />
                         </button>
                       </div>
@@ -157,6 +176,31 @@ export default function Tracker() {
             </tbody>
           </table>
         </div>
+        
+        {/* Pagination Controls */}
+        {filteredJobs.length > 0 && (
+          <div className="flex items-center justify-between border-t border-slate-200 px-6 py-4">
+            <span className="text-sm text-slate-500">
+              Page {currentPage} of {totalPages}
+            </span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,16 +3,18 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { CopyButton } from "./CopyButton";
-import { Edit2, Eye } from "lucide-react";
+import { Edit2, Eye, Download } from "lucide-react";
+import { exportToDocx } from "@/lib/export";
 
 interface MarkdownEditorProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
   label?: string;
+  exportFileName?: string;
 }
 
-export function MarkdownEditor({ value, onChange, placeholder, label }: MarkdownEditorProps) {
+export function MarkdownEditor({ value, onChange, placeholder, label, exportFileName }: MarkdownEditorProps) {
   const [mode, setMode] = useState<"edit" | "preview">("preview");
 
   return (
@@ -53,7 +55,21 @@ export function MarkdownEditor({ value, onChange, placeholder, label }: Markdown
 
       {/* Editor/Preview Area */}
       <div className="relative flex-1 bg-white p-6">
-        {value && <CopyButton textToCopy={value} className="absolute right-10 top-10" />}
+        {value && (
+          <div className="absolute right-10 top-10 flex items-center gap-2 z-10">
+            {exportFileName && (
+              <button
+                onClick={() => exportToDocx(value, exportFileName)}
+                className="flex items-center gap-1.5 rounded-md border border-slate-200 bg-white/80 px-2.5 py-1.5 text-xs font-medium text-slate-600 shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:text-slate-900"
+                title="Download as DOCX"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Download Doc</span>
+              </button>
+            )}
+            <CopyButton textToCopy={value} />
+          </div>
+        )}
         
         {mode === "edit" ? (
           <textarea

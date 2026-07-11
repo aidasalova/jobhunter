@@ -48,7 +48,7 @@ export default function Dashboard() {
     <div className="mx-auto max-w-7xl p-6 lg:p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900">Dashboard</h1>
-        <p className="mt-2 text-lg text-slate-600">Welcome to JobHunter. Track your progress and manage your applications.</p>
+        <p className="mt-2 text-lg text-slate-600">Welcome to One More CV. Generate and track your job applications and prepare for interviews with AI Coach. All your data always stays private.</p>
       </div>
 
       {/* Funnel Stats */}
@@ -64,7 +64,7 @@ export default function Dashboard() {
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-100 bg-slate-50/50 px-6 py-5">
           <h2 className="text-lg font-semibold text-slate-900">Onboarding Checklist</h2>
-          <p className="mt-1 text-sm text-slate-500">Complete these steps to get the most out of JobHunter.</p>
+          <p className="mt-1 text-sm text-slate-500">Complete these steps to get the most out of One More CV.</p>
         </div>
         <div className="divide-y divide-slate-100 p-2">
           <ChecklistItem 
@@ -79,6 +79,11 @@ export default function Dashboard() {
           />
           <ChecklistItem 
             title="Track your progress" 
+            isComplete={hasTrackedProgress} 
+            href="/tracker"
+          />
+          <ChecklistItem 
+            title="Prepare for the interview with AI Coach" 
             isComplete={hasTrackedProgress} 
             href="/tracker"
           />

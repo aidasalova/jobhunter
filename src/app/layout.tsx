@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JobHunter",
-  description: "Your job hunting productivity app",
+  title: "One More CV",
+  description: "Your job hunting assistant and coach",
 };
 
 export default function RootLayout({

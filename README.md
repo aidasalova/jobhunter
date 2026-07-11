@@ -1,4 +1,4 @@
-# Jobhunter OS
+# One More CV
 
 A modern, local-first application designed to streamline and supercharge your job hunting process using AI.
 
@@ -6,15 +6,15 @@ A modern, local-first application designed to streamline and supercharge your jo
 Applying for jobs is a time-sink. Tailoring your CV and Cover Letter for every single application is exhausting, and keeping track of where you applied (and with which version of your CV) quickly turns into a disorganized mess of folders and spreadsheets. 
 
 ## The Solution
-**Jobhunter** is an all-in-one platform that acts as your personal career assistant:
+**One More CV** is an all-in-one platform that acts as your personal career assistant:
 - **AI CV Tailoring:** Connect your Master Profile, paste a Job Description, and instantly generate a highly tailored CV and Cover Letter.
 - **Application Tracker:** A built-in List system to track your application statuses (Draft, Applied, Interview, Offer, Rejected) along with the exact CV and Cover Letter you used for each role.
-- **AI Interview Coach:** An AI agent that analyzes your CV against the Job Description to generate a custom Interview Strategy Brief and 10 highly probable, specific interview questions (with suggested STAR-method answers).
+- **AI Interview Coach:** An AI agent that analyzes your CV against the Job Description to generate a custom Interview Stra tegy Brief and 10 highly probable, specific interview questions (with suggested STAR-method answers).
 
 ## Architecture & Privacy (Zero-Liability)
 Privacy is a core feature of this application. 
 
-Jobhunter is built as a strictly **"Zero-Liability / Local-First"** application.
+One More CV is built as a strictly **"Zero-Liability / Local-First"** application.
 - **No Databases:** There is no centralized backend database (no PostgreSQL, no MongoDB, no SQLite).
 - **100% Local Storage:** All of your data—your Master Profile, your job history, your tailored CVs, and your API keys—is stored entirely within your browser's native `localStorage`.
 - **Zero Server Leaks:** When utilizing AI features, your data is passed in memory directly to the LLM provider. Nothing is ever cached, logged, or saved on our servers. You have complete ownership of your data.
@@ -30,7 +30,7 @@ Jobhunter is built as a strictly **"Zero-Liability / Local-First"** application.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/jobhunter.git
+   git clone https://github.com/aidasalova/jobhunter.git
    cd jobhunter
    ```
 
@@ -38,18 +38,9 @@ Jobhunter is built as a strictly **"Zero-Liability / Local-First"** application.
    ```bash
    npm install
    ```
-
-3. **Configure Environment Variables:**
-   Create a `.env.local` file in the root directory and add your AI provider API key. (For example, using Google Gemini):
-   ```env
-   GEMINI_API_KEY=your_gemini_api_key_here
-   ```
-   *(Note: The application also supports passing the API key directly via the Master Profile UI, allowing users to "Bring Their Own Key" without editing `.env.local`).*
-
-4. **Start the Development Server:**
+3. **Start the Development Server:**
    ```bash
    npm run dev
    ```
-
-5. **Open the app:**
+4. **Open the app:**
    Navigate to [http://localhost:3000](http://localhost:3000) in your browser.

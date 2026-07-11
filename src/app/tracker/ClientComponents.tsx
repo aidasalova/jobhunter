@@ -39,13 +39,13 @@ export function StatusDropdown({ id, currentStatus, onChange }: { id: string, cu
         value={status}
         onChange={handleChange}
         disabled={isUpdating}
-        className={`w-full appearance-none rounded-full border px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 ${
-          status === "Draft" ? "bg-slate-100 text-slate-700 border-slate-200" :
-          status === "Applied" ? "bg-blue-50 text-blue-700 border-blue-200" :
-          status === "Interviewing" ? "bg-purple-50 text-purple-700 border-purple-200" :
-          status === "Offer" ? "bg-green-50 text-green-700 border-green-200" :
-          isRejected ? "bg-red-50 text-red-700 border-red-200" :
-          "bg-slate-100 text-slate-700 border-slate-200"
+        className={`w-full appearance-none rounded-full px-3 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-50 ${
+          status === "Draft" ? "bg-slate-100 text-slate-700" :
+          status === "Applied" ? "bg-blue-50 text-blue-700" :
+          status === "Interviewing" ? "bg-purple-50 text-purple-700" :
+          status === "Offer" ? "bg-green-50 text-green-700" :
+          isRejected ? "bg-red-50 text-red-700" :
+          "bg-slate-100 text-slate-700"
         }`}
       >
         {statuses.map(s => <option key={s} value={s}>{s}</option>)}
@@ -120,7 +120,7 @@ export function ManualAddModal({ onAdd, initialData, isEditMode = false }: { onA
           className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 active:scale-95"
         >
           <Plus className="h-4 w-4" />
-          Manually Add Application
+          New Application
         </button>
       ) : (
         <button 
