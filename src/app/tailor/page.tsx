@@ -178,7 +178,7 @@ export default function Tailor() {
       <header className="mb-8 shrink-0">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900">CV Tailor</h1>
         <p className="mt-2 text-lg text-slate-600">
-          Generate highly tailored applications based on your Master Profile and specific job descriptions.
+          Generate tailored applications based on your Master Profile and specific job descriptions.
         </p>
       </header>
 
@@ -386,7 +386,7 @@ export default function Tailor() {
                 <div className="max-w-xs space-y-1">
                   <h3 className="text-sm font-semibold text-slate-900">Ready to Generate</h3>
                   <p className="text-sm text-slate-500">
-                    Paste a job description and hit generate to see your tailored application. Review properly and use your human judgement.
+                    Paste a job description and hit generate to see your tailored application.
                   </p>
                 </div>
               </div>

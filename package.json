@@ -13,6 +13,7 @@
     "@ai-sdk/google": "^3.0.87",
     "@ai-sdk/openai": "^3.0.79",
     "@tailwindcss/typography": "^0.5.20",
+    "@vercel/analytics": "^2.0.1",
     "ai": "^6.0.217",
     "file-saver": "^2.0.5",
     "html-docx-js-typescript": "^0.1.5",
