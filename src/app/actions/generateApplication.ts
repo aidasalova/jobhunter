@@ -86,7 +86,7 @@ ${baseCV || "None provided. Construct a new, highly tailored CV from the Master 
 
     return { success: true, data: object };
   } catch (error: any) {
-    console.error("AI Generation Error:", error);
+    console.error("AI Generation Error:", error.message || "Unknown error");
     return { success: false, error: error.message || "An error occurred during generation." };
   }
 }
@@ -147,7 +147,7 @@ ${baseCV || "None provided."}`;
 
     return { success: true, data: object };
   } catch (error: any) {
-    console.error("AI Generation Error:", error);
+    console.error("AI Generation Error:", error.message || "Unknown error");
     return { success: false, error: error.message || "An error occurred during generation." };
   }
 }

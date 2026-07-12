@@ -75,7 +75,7 @@ ${jobDescription || "Not provided. Base questions on standard expectations for a
 
     return { success: true, data: object };
   } catch (error: any) {
-    console.error("Error generating questions:", error);
+    console.error("Error generating questions:", error.message || "Unknown error");
     return { success: false, error: error.message };
   }
 }
@@ -113,7 +113,7 @@ ${cv || "Not provided."}
 
     return { success: true, data: text };
   } catch (error: any) {
-    console.error("Error generating answer:", error);
+    console.error("Error generating answer:", error.message || "Unknown error");
     return { success: false, error: error.message };
   }
 }

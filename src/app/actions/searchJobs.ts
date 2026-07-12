@@ -25,7 +25,7 @@ export async function searchJobs(query: string) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Serper API Error:", errorText);
+      console.error("Serper API Error:", error);
       return { success: false, error: "Failed to fetch jobs from search provider." };
     }
 
