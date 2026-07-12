@@ -15,7 +15,7 @@ export default function Sidebar() {
       <div className="flex h-16 shrink-0 items-center px-6 border-b border-slate-800/50">
         <div className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-blue-600 shadow-sm">
-             <Briefcase className="h-5 w-5 text-white" />
+            <Briefcase className="h-5 w-5 text-white" />
           </div>
           One More CV
         </div>
@@ -39,7 +39,7 @@ export default function Sidebar() {
           <p className="mb-1 text-sm font-semibold text-slate-200">One More CV</p>
           <p className="leading-relaxed">Supercharge your job search with AI-powered CV tailoring and AI Interview Coach</p>
           <a 
-            href="mailto:your.email@example.com?subject=OneMoreCV%20Info"
+            href="mailto:info@onemorecv.xyz?subject=OneMoreCV%20Info"
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm transition-colors hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-200"
           >
             <Mail className="h-4 w-4" />

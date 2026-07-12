@@ -68,7 +68,7 @@ export default function Dashboard() {
         </div>
         <div className="divide-y divide-slate-100 p-2">
           <ChecklistItem 
-            title="Set up your Master Profile & AI Key" 
+            title="Set up your Master Profile & API Key" 
             isComplete={hasApiKey} 
             href="/profile"
           />

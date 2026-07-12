@@ -33,7 +33,7 @@ export function ApiKeyModal({ onClose, onSave }: ApiKeyModalProps) {
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
               <ShieldCheck className="h-6 w-6" />
             </div>
-            <h2 className="text-xl font-bold text-slate-900">Get your free AI Key</h2>
+            <h2 className="text-xl font-bold text-slate-900">Get your free API Key</h2>
           </div>
           <p className="mt-4 text-sm font-medium leading-relaxed text-slate-600">
             To keep your resume and data 100% private, this app runs entirely on your device. We just need a free "key" from Google to power the AI.
