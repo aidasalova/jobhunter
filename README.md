@@ -10,6 +10,7 @@ Applying for jobs is a time-sink. Tailoring your CV and Cover Letter for every s
 - **AI CV Tailoring:** Connect your Master Profile, paste a Job Description, and instantly generate a highly tailored CV and Cover Letter.
 - **Application Tracker:** A built-in List system to track your application statuses (Draft, Applied, Interview, Offer, Rejected) along with the exact CV and Cover Letter you used for each role.
 - **AI Interview Coach:** An AI agent that analyzes your CV against the Job Description to generate a custom Interview Stra tegy Brief and 10 highly probable, specific interview questions (with suggested STAR-method answers).
+- **Google Doc Addon:** This project also features a companion Google Workspace Add-on built with Google Apps Script. It allows users to import their .json backup directly into a Google Doc sidebar and use Gemini to dynamically highlight and replace CV text on the page based on the job description. For detailed instructions, see Addon Readme.
 
 ## Architecture & Privacy (Zero-Liability)
 Privacy is a core feature of this application. 
@@ -20,11 +21,14 @@ One More CV is built as a strictly **"Zero-Liability / Local-First"** applicatio
 - **Zero Server Leaks:** When utilizing AI features, your data is passed in memory directly to the LLM provider. Nothing is ever cached, logged, or saved on our servers. You have complete ownership of your data.
 
 ## Tech Stack
-- **Framework:** [Next.js](https://nextjs.org/) (App Router)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **AI Integration:** [Vercel AI SDK](https://sdk.vercel.ai/)
-- **Icons:** [Lucide React](https://lucide.dev/)
+* **Framework:** Next.js (App Router)
+* **Styling:** Tailwind CSS
+* **Icons:** Lucide React
+* **AI Integration:** Google Gemini (REST API / SDK)
+* **Storage:** Native Browser LocalStorage
+* **Analytics:** Vercel Web Analytics
+* **Deployment:** Vercel
+
 
 ## How to Run Locally
 
