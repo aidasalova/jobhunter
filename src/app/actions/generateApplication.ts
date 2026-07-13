@@ -20,7 +20,7 @@ function getModel(provider: string, apiKey: string) {
   }
   switch (provider) {
     case "gemini":
-      return createGoogleGenerativeAI({ apiKey })("gemini-2.5-flash");
+      return createGoogleGenerativeAI({ apiKey })("gemini-3.1-flash-lite");
     case "openai":
       return createOpenAI({ apiKey })("gpt-4o-mini");
     case "anthropic":
