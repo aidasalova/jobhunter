@@ -19,22 +19,24 @@ export const metadata: Metadata = {
   description: "Your job hunting assistant and coach",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="flex h-full bg-slate-50 text-slate-900" suppressHydrationWarning>
+    <html lang="en">
+      <body className="bg-slate-50 text-slate-900">
+        
+        {/* Your new responsive Navigation goes here */}
         <Sidebar />
-        <main className="flex-1 overflow-y-auto">
+
+        {/* The Main Content Wrapper */}
+        <main className="
+          /* --- MOBILE: Space for the bottom bar --- */
+          pb-20 pt-4 px-4 
+          /* --- DESKTOP: Space for the left sidebar --- */
+          lg:pb-8 lg:pt-8 lg:px-8 lg:pl-72"
+        >
           {children}
-          <Analytics />
         </main>
+
       </body>
     </html>
   );
