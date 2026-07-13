@@ -1,5 +1,6 @@
 "use client";
 
+import BackupRestore from "@/components/BackupRestore";
 import { useState, useEffect } from "react";
 import {
   Briefcase,
@@ -172,7 +173,7 @@ export default function Profile() {
         </p>
       </header>
 
-      <div className="space-y-8 pb-24">
+      <div className="space-y-8">
         {/* API Settings Section */}
         <section className="overflow-hidden rounded-xl border border-blue-200 bg-blue-50/30 shadow-sm">
           <div className="border-b border-blue-100 bg-blue-100/50 px-6 py-4">
@@ -257,31 +258,39 @@ export default function Profile() {
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 z-10 border-t border-slate-200 bg-white/80 p-4 backdrop-blur-md lg:pl-64">
-        <div className="mx-auto flex max-w-4xl justify-end">
-          <button
-            onClick={handleSave}
-            disabled={isSaved}
-            className={`flex items-center gap-2 rounded-lg px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-              isSaved
-                ? "cursor-default bg-green-600 hover:bg-green-600 focus:ring-green-500"
-                : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 active:scale-95"
-            }`}
-          >
-            {isSaved ? (
-              <>
-                <Check className="h-4 w-4" />
-                Saved!
-              </>
-            ) : (
-              <>
-                <Save className="h-4 w-4" />
-                Save Profile
-              </>
-            )}
-          </button>
-        </div>
+      {/* 1. Normal, flowing Save Button (No longer sticky) */}
+      <div className="mt-8 flex justify-end">
+        <button
+          onClick={handleSave}
+          disabled={isSaved}
+          className={`flex items-center gap-2 rounded-lg px-8 py-3 text-sm font-semibold text-white shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+            isSaved
+              ? "cursor-default bg-green-600 hover:bg-green-600 focus:ring-green-500"
+              : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 active:scale-95"
+          }`}
+        >
+          {isSaved ? (
+            <>
+              <Check className="h-5 w-5" />
+              Profile Saved!
+            </>
+          ) : (
+            <>
+              <Save className="h-5 w-5" />
+              Save Profile
+            </>
+          )}
+        </button>
       </div>
-    </div>
+
+      {/* 2. Visual Divider */}
+      <hr className="my-10 border-slate-200" />
+
+      {/* 3. Backup & Restore Component */}
+      <div className="mb-12">
+        <BackupRestore />
+      </div>
+
+    </div> // This is the closing tag of your page container
   );
 }

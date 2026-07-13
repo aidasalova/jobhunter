@@ -83,7 +83,7 @@ export function ApiKeyModal({ onClose, onSave }: ApiKeyModalProps) {
               <div>
                 <h3 className="font-semibold text-slate-900">Copy & Paste</h3>
                 <p className="mt-1 text-sm text-slate-600">
-                  Copy the long string of text (it usually starts with <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800">AIza...</code>) and paste it below.
+                  Copy the long string of text and paste it below.
                 </p>
               </div>
             </div>
@@ -100,7 +100,7 @@ export function ApiKeyModal({ onClose, onSave }: ApiKeyModalProps) {
                 type="password"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                placeholder="AIzaSy..."
+                placeholder="AQ..."
                 className="block w-full rounded-xl border border-slate-300 bg-white py-3 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 shadow-sm"
               />
             </div>

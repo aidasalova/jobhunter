@@ -209,6 +209,7 @@ export default function Tailor() {
                 <input
                   id="companyName"
                   type="text"
+                  autoComplete="off"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="e.g. Google"
@@ -220,6 +221,7 @@ export default function Tailor() {
                 <input
                   id="roleTitle"
                   type="text"
+                  autoComplete="off"
                   value={roleTitle}
                   onChange={(e) => setRoleTitle(e.target.value)}
                   placeholder="e.g. Frontend Engineer"

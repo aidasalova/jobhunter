@@ -1,5 +1,6 @@
 "use client";
 
+import BackupRestore from "@/components/BackupRestore";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { getApplications, deleteApplication, JobApplication } from "@/lib/storage";
@@ -201,6 +202,9 @@ export default function Tracker() {
             </div>
           </div>
         )}
+      </div>
+      <div className="mt-8">
+        <BackupRestore />
       </div>
     </div>
   );
